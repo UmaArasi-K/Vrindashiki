@@ -20,16 +20,29 @@ const allowedOrigins = process.env.ALLOWED_ORIGINS
   : ['http://localhost:5173', 'http://localhost:8080'];
 
 app.use(
-  cors({
-    origin: (origin, callback) => {
-      // Allow requests with no origin (mobile apps, curl, Cloud Run health checks)
-      if (!origin || allowedOrigins.includes(origin)) {
-        callback(null, true);
-      } else {
-        callback(new Error(`CORS: origin ${origin} not allowed`));
+  cors((req, callback) => {
+    const origin = req.header('Origin');
+    let corsOptions: cors.CorsOptions;
+
+    if (!origin) {
+      corsOptions = { origin: true, credentials: true };
+    } else if (allowedOrigins.includes(origin)) {
+      corsOptions = { origin: true, credentials: true };
+    } else {
+      // Check if it is a same-origin request
+      try {
+        const originUrl = new URL(origin);
+        const host = req.header('Host');
+        if (host && originUrl.host === host) {
+          corsOptions = { origin: true, credentials: true };
+        } else {
+          corsOptions = { origin: false };
+        }
+      } catch (err) {
+        corsOptions = { origin: false };
       }
-    },
-    credentials: true,
+    }
+    callback(null, corsOptions);
   })
 );
 

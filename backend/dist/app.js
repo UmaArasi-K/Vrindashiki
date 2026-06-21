@@ -18,17 +18,32 @@ app.use((0, helmet_1.default)({
 const allowedOrigins = process.env.ALLOWED_ORIGINS
     ? process.env.ALLOWED_ORIGINS.split(',')
     : ['http://localhost:5173', 'http://localhost:8080'];
-app.use((0, cors_1.default)({
-    origin: (origin, callback) => {
-        // Allow requests with no origin (mobile apps, curl, Cloud Run health checks)
-        if (!origin || allowedOrigins.includes(origin)) {
-            callback(null, true);
+app.use((0, cors_1.default)((req, callback) => {
+    const origin = req.header('Origin');
+    let corsOptions;
+    if (!origin) {
+        corsOptions = { origin: true, credentials: true };
+    }
+    else if (allowedOrigins.includes(origin)) {
+        corsOptions = { origin: true, credentials: true };
+    }
+    else {
+        // Check if it is a same-origin request
+        try {
+            const originUrl = new URL(origin);
+            const host = req.header('Host');
+            if (host && originUrl.host === host) {
+                corsOptions = { origin: true, credentials: true };
+            }
+            else {
+                corsOptions = { origin: false };
+            }
         }
-        else {
-            callback(new Error(`CORS: origin ${origin} not allowed`));
+        catch (err) {
+            corsOptions = { origin: false };
         }
-    },
-    credentials: true,
+    }
+    callback(null, corsOptions);
 }));
 /* ── Body Parsers ────────────────────────────────────────────── */
 app.use(express_1.default.json({ limit: '1mb' }));
