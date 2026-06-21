@@ -1,0 +1,29 @@
+# Vrindashiki Task List
+
+- `[ ]` **Project Setup**
+  - `[ ]` Initialize frontend (React + Vite)
+  - `[ ]` Initialize backend (Node.js/Express, TypeScript)
+  - `[ ]` Setup basic CI/CD pipeline (GitHub Actions)
+- `[ ]` **Backend Development**
+  - `[ ]` Setup Firestore connection
+  - `[ ]` Implement Firebase Authentication
+  - `[ ]` Create RESTful API endpoints for:
+    - `[ ]` User profiles & auth
+    - `[ ]` Carbon footprint tracking
+    - `[ ]` Streaks & points calculation
+    - `[ ]` Neighborhood (Community) data
+  - `[ ]` Dockerize the backend for Cloud Run
+- `[ ]` **Frontend Development**
+  - `[ ]` Setup Redux Toolkit state management
+  - `[ ]` Implement Authentication UI (Login/Signup)
+  - `[ ]` Build the 'Track' screen (input daily activities)
+  - `[ ]` Implement Fitness Device Integration (optional, explicit consent)
+  - `[ ]` Build the Gamified Dashboard (Neighborhood view, avatars, badges)
+  - `[ ]` Implement streak notifications
+- `[ ]` **Testing & Polish**
+  - `[ ]` Write automated tests (frontend & backend)
+  - `[ ]` Manual verification of core flows
+  - `[ ]` Final UI/UX polish (premium aesthetics)
+- `[ ]` **Deployment**
+  - `[ ]` Deploy backend to Cloud Run
+  - `[ ]` Publish frontend (Vite static build to Firebase Hosting or Cloud Run)

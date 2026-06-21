@@ -1,0 +1,177 @@
+.community-page {
+  animation: fadeIn var(--transition-base) ease;
+}
+
+.community-layout {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-8);
+}
+
+/* Leaderboard */
+.leaderboard-section {
+  overflow: hidden;
+}
+
+.leaderboard-table {
+  margin-top: var(--space-4);
+}
+
+.leaderboard-header {
+  display: grid;
+  grid-template-columns: 60px 1fr 80px 80px 80px;
+  gap: var(--space-2);
+  padding: var(--space-3) var(--space-4);
+  font-size: var(--text-xs);
+  font-weight: var(--font-semibold);
+  color: var(--color-text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  border-bottom: 1px solid var(--color-border);
+}
+
+.leaderboard-row {
+  display: grid;
+  grid-template-columns: 60px 1fr 80px 80px 80px;
+  gap: var(--space-2);
+  padding: var(--space-3) var(--space-4);
+  align-items: center;
+  border-bottom: 1px solid var(--color-border);
+  transition: background var(--transition-fast);
+}
+
+.leaderboard-row:hover {
+  background: var(--color-bg-glass-hover);
+}
+
+.leaderboard-row:last-child {
+  border-bottom: none;
+}
+
+.leaderboard-row--you {
+  background: var(--color-accent-dim) !important;
+  border-left: 3px solid var(--color-accent);
+}
+
+.lb-rank-badge {
+  font-size: var(--text-xl);
+}
+
+.lb-rank-number {
+  font-family: var(--font-display);
+  font-weight: var(--font-bold);
+  color: var(--color-text-muted);
+  font-size: var(--text-sm);
+}
+
+.lb-col-user {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+}
+
+.lb-user-name {
+  font-size: var(--text-sm);
+  font-weight: var(--font-medium);
+  color: var(--color-text-primary);
+  display: flex;
+  align-items: center;
+}
+
+.lb-col-streak {
+  display: flex;
+  align-items: center;
+  gap: var(--space-1);
+  font-size: var(--text-sm);
+  font-weight: var(--font-semibold);
+  color: var(--color-fire);
+}
+
+.lb-streak-fire {
+  font-size: var(--text-sm);
+}
+
+.lb-col-points {
+  font-family: var(--font-display);
+  font-weight: var(--font-bold);
+  font-size: var(--text-sm);
+  color: var(--color-accent);
+}
+
+.lb-col-level {
+  text-align: center;
+}
+
+/* Challenges */
+.challenges-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+  gap: var(--space-4);
+}
+
+.challenge-card {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+.challenge-card--completed {
+  opacity: 0.7;
+}
+
+.challenge-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.challenge-title {
+  font-family: var(--font-display);
+  font-size: var(--text-lg);
+  font-weight: var(--font-semibold);
+  color: var(--color-text-primary);
+}
+
+.challenge-description {
+  font-size: var(--text-sm);
+  color: var(--color-text-secondary);
+  line-height: var(--leading-relaxed);
+}
+
+.challenge-progress {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.challenge-progress-header {
+  display: flex;
+  justify-content: space-between;
+}
+
+.challenge-meta {
+  display: flex;
+  gap: var(--space-4);
+  font-size: var(--text-xs);
+  color: var(--color-text-muted);
+}
+
+.challenge-join {
+  margin-top: var(--space-2);
+  align-self: flex-start;
+}
+
+@media (max-width: 768px) {
+  .leaderboard-header,
+  .leaderboard-row {
+    grid-template-columns: 50px 1fr 60px 60px;
+  }
+
+  .lb-col-level {
+    display: none;
+  }
+
+  .challenges-list {
+    grid-template-columns: 1fr;
+  }
+}
