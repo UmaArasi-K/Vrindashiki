@@ -1,14 +1,21 @@
-# Use a lightweight Nginx image
+# ⚠️  THIS DOCKERFILE IS NOT USED BY CLOUD BUILD / CLOUD RUN.
+#
+# The root-level Dockerfile (../../Dockerfile) is the one used for deployment.
+# It is a multi-stage build that:
+#   1. Builds the Vite frontend (this folder)
+#   2. Compiles the Express backend
+#   3. Produces a single production image where Express serves both the API
+#      and this compiled React app on port 8080.
+#
+# This file is kept for reference only — e.g. if you ever want to run the
+# frontend as a standalone Nginx container for local testing:
+#
+#   cd frontend && npm run build
+#   docker build -t vrindashiki-frontend .
+#   docker run -p 8080:8080 vrindashiki-frontend
+
 FROM nginx:alpine
-
-# Copy the build output to replace the default nginx contents.
 COPY dist /usr/share/nginx/html
-
-# Copy a custom nginx configuration to handle React Router navigation
 COPY nginx.conf /etc/nginx/conf.d/default.conf
-
-# Expose port 8080 (Cloud Run's default port requirement can also be mapped, but 8080 is standard)
 EXPOSE 8080
-
-# Run nginx in the foreground
 CMD ["nginx", "-g", "daemon off;"]

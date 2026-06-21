@@ -1,0 +1,41 @@
+# .gcloudignore — files NOT uploaded to Cloud Build
+# Keeps the source upload fast and avoids accidental secret leaks.
+
+# Git
+.git/
+.gitignore
+
+# Node modules (rebuilt inside Docker)
+**/node_modules/
+
+# Build outputs (rebuilt inside Docker)
+**/dist/
+frontend/dist/
+
+# IDE & OS
+.idea/
+.vscode/
+*.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+npm-debug.log*
+
+# Test artefacts
+coverage/
+.nyc_output/
+
+# Local environment files (never upload secrets)
+.env
+.env.local
+.env.development
+backend/.env
+
+# Docker build cache
+.dockerignore
+
+# Antigravity / editor metadata
+.gemini/
+skills.md
+tasks.md

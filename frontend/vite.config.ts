@@ -18,4 +18,18 @@ export default defineConfig({
       },
     },
   },
+  build: {
+    // Raise the warning threshold — recharts alone is ~500 kB minified
+    chunkSizeWarningLimit: 800,
+    rollupOptions: {
+      output: {
+        manualChunks: {
+          // Split large vendor libs into separate cached chunks
+          'vendor-react': ['react', 'react-dom', 'react-router-dom'],
+          'vendor-redux': ['@reduxjs/toolkit', 'react-redux'],
+          'vendor-charts': ['recharts'],
+        },
+      },
+    },
+  },
 });
